@@ -39,7 +39,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index:100%;
+    z-index:999; /* Change this line */
     color: #f2f6f8;
 }
 
@@ -48,14 +48,16 @@ a{
     opacity: 1;
     transition: visibility 0s linear 0.3s, opacity 0.3s linear;
 }
-@keyframes show-content{
-    100%{
-        visibility: visible;
-        opacity: 1;
-        
-    }
+@keyframes show-content {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 .navbar .logo{
     font-size:30px;
     font-weight:700;
@@ -110,10 +112,10 @@ a{
     height:100vh;
     padding:60px 9% 0;
     color:rgb(237, 239, 241);
-    visibility: hidden;
-    opacity:0;
+    opacity: 0;
      animation:show-content 1.5s linear forwards;
-     animation-delay:1.9s;
+     animation-delay:1.3s;
+     scroll-margin-top:120px;
 }
 .home-info h1 {
     font-size: 55px;
@@ -268,6 +270,15 @@ body {
         transform: rotate(360deg);
     }
 }
+#home,
+#about-section,
+#projects,
+#experience,
+#education,
+#skills,
+#contact {
+  scroll-margin-top: 120px; /* or height of your fixed navbar */
+}
 
 /* New styles for about section */
 .about-btn {
@@ -299,11 +310,33 @@ body {
     scroll-margin-top: 80px; /* offset for fixed navbar */
 }
 
+/* In your styles.css file */
+
+/* In your styles.css file */
+
+/* Ensure this is present if you want a fixed bounce, otherwise remove */
+/* In your styles.css file */
+
 .about-section h2 {
     font-size: 40px;
     margin-bottom: 20px;
-    color:white;
-    font-weight:bold;
+    color: white;
+    font-weight: bold;
+    /* Add the animation property here */
+    animation: fade ease-in-out; /* Adjust duration and iteration as desired */
+}
+
+/* Define the keyframes for the bounce animation */
+@keyframes bounce-heading {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px); /* Adjust how high the bounce is */
+    }
+    60% {
+        transform: translateY(-7px); /* Adjust how high the second bounce is */
+    }
 }
 
 .about-section p {
@@ -373,9 +406,6 @@ html {
   padding-top: 100px; /* adjust depending on your navbar height */
   margin-top: -100px;
 }
-section {
-  scroll-margin-top: 80px; /* Adjust to your navbar height */
-}
 
 /* Contact section container box styles */
 .neon-text {
@@ -383,7 +413,7 @@ section {
    
 }
 .contact-section-wrapper {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -501,6 +531,7 @@ position: top left;
     color: rgb(7, 218, 45);
     box-shadow: none;
 }
+
 .projects {
     padding: 60px 9%;
     background-color: #012a3e;
@@ -580,6 +611,7 @@ position: top left;
 .project-button:hover {
     background-color: #0056b3;
 }
+
 .experience-section {
   padding: 80px 9%;
   color: white;
@@ -649,6 +681,7 @@ position: top left;
   display: flex;
   justify-content: center;
 }
+
 /* Update your existing skills section styling or create a new one */
 .skills-section {
     padding: 80px 9%; /* Adjust padding as needed */
@@ -755,6 +788,7 @@ position: top left;
         filter: drop-shadow(0 0 15px #82ba8c);
     }
 }
+
 /* Education Section */
 .education-section {
     padding: 80px 9%;
@@ -763,7 +797,7 @@ position: top left;
     text-align: center;
     position: relative;
     overflow: hidden; 
-
+}
 
 .education-section h2 {
     font-size: 40px;
@@ -849,5 +883,4 @@ position: top left;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 }
